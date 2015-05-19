@@ -1,4 +1,3 @@
-Product
-=======
-
-A Symfony project created on May 19, 2015, 11:00 am.
+<<<<<<< HEAD
+# SF2-ProductBundle
+>>>>>>> 2a8c55e6ee25741d120892a1eedb8b5ae52165aa
