@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: @PolcodeProductBundle/Resources/config/parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @PolcodeProductBundle/Resources/config/admin.yml }

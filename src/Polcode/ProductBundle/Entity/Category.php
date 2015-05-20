@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Category {
 
     /**
-     * @ORM\Column(name="category_id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
