@@ -1,5 +1,6 @@
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
@@ -11,5 +12,5 @@ _sonata_admin:
     prefix: /admin
 
 polcode_product_homepage:
-    path:     /{name}
-    defaults: { _controller: PolcodeProductBundle:Default:index }
+    path:     /
+    defaults: { _controller: FOSUserBundle:Security:login }

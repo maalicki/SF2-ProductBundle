@@ -1,5 +1,5 @@
 services:
-    sonata.admin.post:
+    sonata.admin.category:
         class: Polcode\ProductBundle\Admin\CategoryAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Category" }
