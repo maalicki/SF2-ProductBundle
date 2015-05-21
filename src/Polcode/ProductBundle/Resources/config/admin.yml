@@ -9,3 +9,13 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [PolcodeProductBundle]]
+    sonata.admin.product:
+        class: Polcode\ProductBundle\Admin\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Product" }
+        arguments:
+            - ~
+            - Polcode\ProductBundle\Entity\Product
+            - ~
+        calls:
+            - [ setTranslationDomain, [PolcodeProductBundle]]

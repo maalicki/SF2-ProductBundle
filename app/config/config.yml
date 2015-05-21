@@ -69,6 +69,7 @@ doctrine:
             default:
                 auto_mapping: true
 
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -92,6 +93,11 @@ fos_user:
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
+ 
+sonata_admin:
+    title:      CasperShop
+    title_logo: img/logo.png
+        
 
 sonata_block:
     default_contexts: [cms]
@@ -102,3 +108,12 @@ sonata_block:
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
+        
+stof_doctrine_extensions:
+    default_locale: en_US
+    translation_fallback: true
+    orm:
+        default: 
+            sluggable:      true
+            timestampable:  true
+            translatable:   true

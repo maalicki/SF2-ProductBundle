@@ -10,6 +10,7 @@ namespace Polcode\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 
 /**
  * Poduct
@@ -17,35 +18,41 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity
  * @ORM\Table(name="product")
  */
-class Product {
+class Product implements Translatable {
 
     /**
      * @ORM\Column(name="product_id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $product_id;
+    protected $id;
 
     /**
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      * 
      * @var string Product name
      */
-    private $product_name;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
      * 
      * @var text Product description
      */
-    private $product_description;
+    private $description;
 
     /**
-     * @ORM\Column(name="price", type="decimal", precision=4, scale=2)
+     * @ORM\Column(name="price", type="float", scale=2)
      *
      * @var decimal Product price
      */
     private $price;
+
+    /**
+     * @Gedmo\Slug(fields={"description"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products", cascade={"persist"})
@@ -60,69 +67,55 @@ class Product {
      * @ORM\Column(type="datetime")
      */
     private $created;
-    
+
     public function __toString() {
         return $this->getName();
     }
-    
+
     public function getName() {
-        return $this->proxyCurrentLocaleTranslation('getName', array());
+        return $this->name;
     }
 
     /**
-     * Get product_id
+     * Get id
      *
      * @return integer 
      */
-    public function getProductId()
-    {
-        return $this->product_id;
+    public function getId() {
+        return $this->id;
     }
 
     /**
-     * Set product_name
+     * Set name
      *
-     * @param string $productName
+     * @param string $name
      * @return Product
      */
-    public function setProductName($productName)
-    {
-        $this->product_name = $productName;
+    public function setName($name) {
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get product_name
+     * Set description
      *
-     * @return string 
-     */
-    public function getProductName()
-    {
-        return $this->product_name;
-    }
-
-    /**
-     * Set product_description
-     *
-     * @param string $productDescription
+     * @param string $description
      * @return Product
      */
-    public function setProductDescription($productDescription)
-    {
-        $this->product_description = $productDescription;
+    public function setDescription($description) {
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get product_description
+     * Get description
      *
      * @return string 
      */
-    public function getProductDescription()
-    {
-        return $this->product_description;
+    public function getDescription() {
+        return $this->description;
     }
 
     /**
@@ -131,8 +124,7 @@ class Product {
      * @param string $price
      * @return Product
      */
-    public function setPrice($price)
-    {
+    public function setPrice($price) {
         $this->price = $price;
 
         return $this;
@@ -143,8 +135,7 @@ class Product {
      *
      * @return string 
      */
-    public function getPrice()
-    {
+    public function getPrice() {
         return $this->price;
     }
 
@@ -154,8 +145,7 @@ class Product {
      * @param \DateTime $created
      * @return Product
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
 
         return $this;
@@ -166,8 +156,7 @@ class Product {
      *
      * @return \DateTime 
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -177,8 +166,7 @@ class Product {
      * @param \Polcode\ProductBundle\Entity\Category $category
      * @return Product
      */
-    public function setCategory(\Polcode\ProductBundle\Entity\Category $category)
-    {
+    public function setCategory(\Polcode\ProductBundle\Entity\Category $category) {
         $this->category = $category;
 
         return $this;
@@ -189,8 +177,31 @@ class Product {
      *
      * @return \Polcode\ProductBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
+    }
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Product
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

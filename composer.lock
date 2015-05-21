@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe5e8ce972def5b77c66b7797f1d197b",
+    "hash": "259777af215a2c0951c5086c011f2384",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2540,16 +2540,16 @@
         },
         {
             "name": "sonata-project/easy-extends-bundle",
-            "version": "dev-master",
+            "version": "2.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataEasyExtendsBundle.git",
-                "reference": "a29ed7c2c49ac02bc0cd08700bf2037c4903ce9e"
+                "reference": "fb8c1335e3fcf4791fffd13d63b80741445c5665"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/a29ed7c2c49ac02bc0cd08700bf2037c4903ce9e",
-                "reference": "a29ed7c2c49ac02bc0cd08700bf2037c4903ce9e",
+                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/fb8c1335e3fcf4791fffd13d63b80741445c5665",
+                "reference": "fb8c1335e3fcf4791fffd13d63b80741445c5665",
                 "shasum": ""
             },
             "require": {
@@ -2578,22 +2578,22 @@
             ],
             "authors": [
                 {
-                    "name": "Sonata Community",
-                    "homepage": "https://github.com/sonata-project/SonataEasyExtendsBundle/contributors"
-                },
-                {
                     "name": "Thomas Rabaix",
                     "email": "thomas.rabaix@sonata-project.org",
-                    "homepage": "https://sonata-project.org"
+                    "homepage": "http://sonata-project.org"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataEasyExtendsBundle/contributors"
                 }
             ],
             "description": "Symfony SonataEasyExtendsBundle",
-            "homepage": "https://sonata-project.org/bundles/easy-extends",
+            "homepage": "http://sonata-project.org/bundles/easy-extends",
             "keywords": [
                 "Easy Extends",
                 "sonata"
             ],
-            "time": "2015-03-26 12:09:29"
+            "time": "2014-09-29 09:36:23"
         },
         {
             "name": "sonata-project/exporter",
@@ -3395,7 +3395,6 @@
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
         "sonata-project/block-bundle": 20,
-        "sonata-project/easy-extends-bundle": 20,
         "sonata-project/datagrid-bundle": 20,
         "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-orm-admin-bundle": 20,

@@ -32,4 +32,4 @@ _sonata_admin:
 
 polcode_product_homepage:
     path:     /
-    defaults: { _controller: FOSUserBundle:Security:login }
+    defaults: { _controller: PolcodeProductBundle:Default:index }
