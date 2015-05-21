@@ -87,6 +87,9 @@ class ProductController extends Controller {
      *
      */
     public function showAction($id) {
+        
+        list($id, $tp[]) = explode("-", $id);
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PolcodeProductBundle:Product')->find($id);
