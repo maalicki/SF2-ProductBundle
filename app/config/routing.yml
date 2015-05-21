@@ -33,3 +33,7 @@ _sonata_admin:
 polcode_product_homepage:
     path:     /
     defaults: { _controller: PolcodeProductBundle:Default:index }
+    
+polcode_product_product:
+    resource: "@PolcodeProductBundle/Resources/config/routing/product.yml"
+    prefix:   /product

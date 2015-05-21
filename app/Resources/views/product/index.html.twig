@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block pageTitle %}
+    List | {{ parent() }}
+{% endblock %}
+
+{% block content -%}
+    <div class="col-sm-offset-2 col-sm-8">
+        <div class="col-sm-6"><h1>Product list</h1></div>
+        <div class="col-sm-6">
+            <a href="{{ path('product_new') }}" class="btn btn-success pull-right" style="margin-top: 20px;" data-toggle="tooltip" data-placement="bottom"  title="Add new product"><i class="glyphicon glyphicon-plus"></i></a>
+        </div>
+        <table class="records_list table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Slug</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.description }}</td>
+                        <td>{{ entity.price }}</td>
+                        <td>{{ entity.slug }}</td>
+                        <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            <a href="{{ path('product_show', { 'id': entity.id }) }}" class="btn btn-info btn-sm" data-toggle="tooltip" title="Show"><i class="glyphicon glyphicon-list-alt"></i></a>
+                            <a href="{{ path('product_edit', { 'id': entity.id }) }}" class="btn btn-warning btn-sm"  data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

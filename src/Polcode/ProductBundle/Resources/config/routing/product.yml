@@ -1,0 +1,30 @@
+product:
+    path:     /
+    defaults: { _controller: "PolcodeProductBundle:Product:index" }
+
+product_show:
+    path:     /{id}/show
+    defaults: { _controller: "PolcodeProductBundle:Product:show" }
+
+product_new:
+    path:     /new
+    defaults: { _controller: "PolcodeProductBundle:Product:new" }
+
+product_create:
+    path:     /create
+    defaults: { _controller: "PolcodeProductBundle:Product:create" }
+    methods:  POST
+
+product_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PolcodeProductBundle:Product:edit" }
+
+product_update:
+    path:     /{id}/update
+    defaults: { _controller: "PolcodeProductBundle:Product:update" }
+    methods:  [POST, PUT]
+
+product_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PolcodeProductBundle:Product:delete" }
+    methods:  [POST, DELETE]

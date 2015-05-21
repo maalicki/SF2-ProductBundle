@@ -49,7 +49,13 @@ class Product implements Translatable {
     private $price;
 
     /**
-     * @Gedmo\Slug(fields={"description"})
+     * @Gedmo\Slug(handlers={
+     *      @Gedmo\SlugHandler(class="Gedmo\Sluggable\Handler\InversedRelativeSlugHandler", options={
+     *          @Gedmo\SlugHandlerOption(name="relationClass", value="Sluggable\Fixture\Handler\User"),
+     *          @Gedmo\SlugHandlerOption(name="mappedBy", value="product"),
+     *          @Gedmo\SlugHandlerOption(name="inverseSlugField", value="slug")
+     *      })
+     * }, separator="-", updatable=true, fields={"description"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
