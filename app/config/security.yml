@@ -40,20 +40,45 @@ security:
             anonymous:          true
         # -> custom firewall for the admin area of the URL
         admin:
-            pattern:            /admin(.*)
+            switch_user:        true
             context:            user
+            pattern:            /admin(.*)
             form_login:
                 provider:       fos_userbundle
                 login_path:     /admin/login
                 use_forward:    false
                 check_path:     /admin/login_check
                 failure_path:   null
+                use_referer:    true
             logout:
                 path:           /admin/logout
-            anonymous:          true
+                target:         /admin/login
+            anonymous:    true
+            remember_me:
+                key:      9034895c8e6816cad3f8fc4d3171bce10
+                lifetime: 3600
+                path:     /
+                domain:   ~
 
         # -> end custom configuration
-        
+        # defaut login area for standard users
+        main:
+            switch_user:        true
+            context:            user
+            pattern:            .*
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+            logout:             true
+            anonymous:          true
+            remember_me:
+                key:      9034895c8e6816cad3f8fc4d3171bce10
+                lifetime: 3600
+                path:     /
+                domain:   ~
     acl:
         connection: default
 

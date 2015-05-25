@@ -17,21 +17,33 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class ProductRepository extends EntityRepository {
-    
+
     public function findBySlugOrId($var) {
-        
+
         $repository = $this->getEntityManager()->getRepository('PolcodeProductBundle:Product');
 
 
-        $query = $repository->createQueryBuilder('e')
-            ->where('e.id = :var')
-            ->orWhere('e.slug = :var')
-            ->setParameters( ['var' => $var])
-            ->getQuery();
+//        $query = $repository->createQueryBuilder('e')
+//            ->where('e.id = :var')
+//            ->orWhere('e.slug = :var')
+//            ->setParameters( ['var' => $var])
+//            ->getQuery();
 
-        $product = $query->getResult()[0];
+        $query = $this->getEntityManager()
+                        ->createQuery(
+                                'SELECT p, pTrans
+                                FROM PolcodeProductBundle:Product p
+                                JOIN p.translations pTrans
+                                WHERE p.id = :id
+                                    or pTrans.slug = :id'
+                        )->setParameter('id', $var);
 
-        
-        return $product;
+        try {
+            return $query->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+
     }
+
 }

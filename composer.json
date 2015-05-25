@@ -27,8 +27,9 @@
         "sonata-project/datagrid-bundle": "~2.2@dev",
         "sonata-project/admin-bundle": "~2.3@dev",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3@dev",
-        "stof/doctrine-extensions-bundle": "~1.1@dev",
+        "stof/doctrine-extensions-bundle": "1.2.*@dev",
         "sonata-project/user-bundle": "~2.3@dev",
+        "knplabs/doctrine-behaviors": "1.1.*@dev",
         "a2lix/translation-form-bundle": "2.*@dev"
     },
     "require-dev": {

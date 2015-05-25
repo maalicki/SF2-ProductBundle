@@ -36,4 +36,7 @@ polcode_product_homepage:
     
 polcode_product_product:
     resource: "@PolcodeProductBundle/Resources/config/routing/product.yml"
-    prefix:   /product
+    prefix:   /{_locale}/product
+    requirements:
+      _locale: pl|en
+    defaults: { _locale: en}

@@ -19,9 +19,9 @@ class ProductAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Provide product name'))
-            ->add('description', 'textarea', array('label' => 'Provide product description'))
-            ->add('translations', 'a2lix_translations')
+            ->add('translations', 'a2lix_translations', array(
+                        'by_reference' => false
+                ))
             ->add('price')
             ->add('category', 'sonata_type_model_list' , [],
                         [ 'placeholder' => 'Select product category' ]
@@ -32,7 +32,7 @@ class ProductAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('price')
+            #->add('price')
             ->add('category.name');
         ;
     }
