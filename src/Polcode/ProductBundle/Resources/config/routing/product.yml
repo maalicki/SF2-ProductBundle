@@ -5,7 +5,7 @@ product:
 product_show:
     path:     /{id}/show
     defaults: { _controller: "PolcodeProductBundle:Product:show" }
-    
+
 product_new:
     path:     /new
     defaults: { _controller: "PolcodeProductBundle:Product:new" }
@@ -28,7 +28,3 @@ product_delete:
     path:     /{id}/delete
     defaults: { _controller: "PolcodeProductBundle:Product:delete" }
     methods:  [POST, DELETE]
-
-product_slug_show:
-    path:     /{id}
-    defaults: { _controller: "PolcodeProductBundle:Product:show" }

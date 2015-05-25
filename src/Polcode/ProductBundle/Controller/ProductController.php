@@ -87,17 +87,13 @@ class ProductController extends Controller {
      *
      */
     public function showAction($id) {
-        
-        list($id, $tp[]) = explode("-", $id);
-        
         $em = $this->getDoctrine()->getManager();
+        $ProductRepo = $em->getRepository('PolcodeProductBundle:Product');
 
-        $entity = $em->getRepository('PolcodeProductBundle:Product')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product entity.');
+        if (!$entity = $ProductRepo->findBySlugOrId($id)) {
+                $this->createNotFoundException('Unable to find Product entity.');
         }
-
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('product/show.html.twig', array(
@@ -112,11 +108,10 @@ class ProductController extends Controller {
      */
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
+        $ProductRepo = $em->getRepository('PolcodeProductBundle:Product');
 
-        $entity = $em->getRepository('PolcodeProductBundle:Product')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product entity.');
+        if (!$entity = $ProductRepo->findBySlugOrId($id)) {
+                $this->createNotFoundException('Unable to find Product entity.');
         }
 
         $editForm = $this->createEditForm($entity);

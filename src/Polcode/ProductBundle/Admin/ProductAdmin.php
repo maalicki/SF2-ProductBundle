@@ -21,6 +21,7 @@ class ProductAdmin extends Admin
         $formMapper
             ->add('name', 'text', array('label' => 'Provide product name'))
             ->add('description', 'textarea', array('label' => 'Provide product description'))
+            ->add('translations', 'a2lix_translations')
             ->add('price')
             ->add('category', 'sonata_type_model_list' , [],
                         [ 'placeholder' => 'Select product category' ]

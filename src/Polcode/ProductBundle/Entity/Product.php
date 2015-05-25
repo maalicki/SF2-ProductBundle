@@ -8,15 +8,17 @@
 
 namespace Polcode\ProductBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
 
 /**
- * Poduct
- * 
  * @ORM\Entity
  * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass="Polcode\ProductBundle\Entity\ProductRepository")
+ * 
+ * @Gedmo\TranslationEntity(class="ProductTranslation")
  */
 class Product implements Translatable {
 
@@ -29,14 +31,13 @@ class Product implements Translatable {
 
     /**
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * 
+     * @Gedmo\Translatable
      * @var string Product name
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * 
      * @var text Product description
      */
     private $description;
@@ -67,15 +68,48 @@ class Product implements Translatable {
      * @ORM\Column(type="datetime")
      */
     private $created;
+    
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
+    
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+    
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="ProductTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
 
-    public function __toString() {
-        return $this->getName();
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
     }
 
-    public function getName() {
-        return $this->name;
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 
+    public function addTranslation(ProductTranslation $t)
+    {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
+    }
+    
+    
+    
     /**
      * Get id
      *
@@ -83,6 +117,15 @@ class Product implements Translatable {
      */
     public function getId() {
         return $this->id;
+    }
+
+    
+    public function __toString() {
+        return $this->getName();
+    }
+
+    public function getName() {
+        return $this->name;
     }
 
     /**

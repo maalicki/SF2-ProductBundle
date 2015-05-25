@@ -3,7 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @PolcodeProductBundle/Resources/config/admin.yml }
-    
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
@@ -26,6 +27,7 @@ framework:
     fragments:       ~
     http_method_override: true
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -34,6 +36,7 @@ twig:
         resources: ['bootstrap_3_layout.html.twig']
         # resources: ['bootstrap_3_horizontal_layout.html.t
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -47,6 +50,7 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -59,20 +63,26 @@ doctrine:
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
-
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         entity_managers:
             default:
                 auto_mapping: true
+                mappings:
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
 
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -80,7 +90,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
+# FOSUserBundle Configuration
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name:  main
@@ -92,7 +103,9 @@ fos_user:
         
     service:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
-        
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Sonata Configuration
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
@@ -112,6 +125,7 @@ sonata_block:
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
         
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
 stof_doctrine_extensions:
     default_locale: en_US
     translation_fallback: true
@@ -120,3 +134,12 @@ stof_doctrine_extensions:
             sluggable:      true
             timestampable:  true
             translatable:   true
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
+a2lix_translation_form:
+    locale_provider: default
+    locales: [en, pl]
+    default_locale: en
+    required_locales: [en]
+    manager_registry: doctrine
+    templating: "A2lixTranslationFormBundle::default.html.twig"
