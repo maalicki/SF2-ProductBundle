@@ -38,7 +38,7 @@ security:
                 failure_path:   null
                 use_referer:    true
             logout:
-                path:           /logout
+                path:           /admin/logout
                 target:         /login
             anonymous:    true
             remember_me:
