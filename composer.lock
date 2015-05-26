@@ -1433,12 +1433,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/DoctrineBehaviors.git",
-                "reference": "d7b2fcca5976657a7afb8c622530fc9559426a4e"
+                "reference": "08669a8231a9be27c5cdb7268d02ff278b5af923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/d7b2fcca5976657a7afb8c622530fc9559426a4e",
-                "reference": "d7b2fcca5976657a7afb8c622530fc9559426a4e",
+                "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/08669a8231a9be27c5cdb7268d02ff278b5af923",
+                "reference": "08669a8231a9be27c5cdb7268d02ff278b5af923",
                 "shasum": ""
             },
             "require": {
@@ -1488,7 +1488,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2015-05-11 06:09:45"
+            "time": "2015-05-26 02:48:37"
         },
         {
             "name": "knplabs/knp-menu",

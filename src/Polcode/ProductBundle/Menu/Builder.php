@@ -11,6 +11,7 @@ class Builder extends ContainerAware {
         $menu = $factory->createItem('root');
         $menu->addChild('Products', array('route' => 'product'));
         $menu->addChild('Add Product', array('route' => 'product_new'));
+        $menu->addChild('ADMIN PANEL', array('route' => 'sonata_admin_dashboard'));
         $menu->addChild('Logout', array('route' => 'fos_user_security_logout'));
         return $menu;
     }

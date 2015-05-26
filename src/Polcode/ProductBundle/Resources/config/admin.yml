@@ -9,6 +9,7 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [PolcodeProductBundle]]
+            
     sonata.admin.product:
         class: Polcode\ProductBundle\Admin\ProductAdmin
         tags:
@@ -19,3 +20,15 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [PolcodeProductBundle]]
+        sonata.admin.user:
+          class: Application\Sonata\UserBundle\Admin\TestAdmin
+          tags:
+              - { name: sonata.admin, manager_type: orm, group: users, label: users, label_translator_strategy: sonata.admin.label.strategy.underscore }
+          arguments:
+              - null
+              - Application\Sonata\UserBundle\Entity\User
+              - SonataAdminBundle:CRUD
+          calls:
+              - [setTranslationDomain, [SonataUserBundle]]
+              - [setUserManager, [@fos_user.user_manager]]
+              - [setSecurityContext, [@security.context]]

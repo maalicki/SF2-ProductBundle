@@ -35,7 +35,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources: ['bootstrap_3_layout.html.twig']
-        # resources: ['bootstrap_3_horizontal_layout.html.t
+#        resources: ['bootstrap_3_horizontal_layout.html.twig]
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Assetic Configuration
@@ -100,14 +100,14 @@ fos_user:
     group:
         group_class:   Application\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager
-        
+    service:
+        user_manager: sonata.user.orm.user_manager
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Sonata Configuration
 sonata_user:
-    security_acl: false
+    security_acl: true
     table:
         user_group:           fos_user_user_group
-
 
     manager_type:             orm
 
@@ -122,7 +122,7 @@ sonata_user:
                 - Default
         dashboard:
             blocks:
-                - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> This is a sample user profile dashboard, feel free to override it in the configuration! Want to make this text dynamic? For instance display the user's name? Create a dedicated block and edit the configuration!"} }
+                - { position: left, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> This is a sample user profile dashboard, feel free to override it in the configuration! Want to make this text dynamic? For instance display the user's name? Create a dedicated block and edit the configuration!"} }
 #                - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 5, mode: public }}
         # Customize user portal menu by setting links
         menu:
@@ -133,21 +133,19 @@ sonata_user:
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.noop
-    title:      CasperShop
+    title:      JustShop (-;
     title_logo: img/logo.png
     templates:
-
         # default global templates
-        layout:    SonataAdminBundle::standard_layout.html.twig
-        ajax:      SonataAdminBundle::ajax_layout.html.twig
-        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        layout:  SonataAdminBundle::standard_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
 
         # default actions templates, should extend a global templates
         list:    SonataAdminBundle:CRUD:list.html.twig
         show:    SonataAdminBundle:CRUD:show.html.twig
         edit:    SonataAdminBundle:CRUD:edit.html.twig
-
-
+    options:
+        dropdown_number_groups_per_colums: 1
 
     dashboard:
         blocks:
@@ -166,7 +164,7 @@ sonata_admin:
                 position: right
                 type: sonata.block.service.rss
                 settings:
-                    title: Sonata Project's Feeds
+                    title: Sonata Projects Feeds
                     url: http://sonata-project.org/blog/archive.rss
 
     persist_filters: true
@@ -177,8 +175,9 @@ sonata_block:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
         sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
         sonata.block.service.rss:
@@ -201,4 +200,3 @@ a2lix_translation_form:
     required_locales: [en]
     manager_registry: doctrine
     templating: "A2lixTranslationFormBundle::default.html.twig"
-    

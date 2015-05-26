@@ -32,7 +32,7 @@ class ProductAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            #->add('price')
+            ->add('price')
             ->add('category.name');
         ;
     }

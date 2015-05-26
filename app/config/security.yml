@@ -10,9 +10,8 @@ security:
         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         SONATA:
-            #- ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
+            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
 
-    providers:
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         fos_userbundle:
@@ -25,19 +24,7 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        # This firewall is used to handle the public login area
-        # This part is handled by the FOS User Bundle
-        main:
-            pattern:             .*
-            context:             user
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /login
-                use_forward:    false
-                check_path:     /login_check
-                failure_path:   null
-            logout:             true
-            anonymous:          true
+
         # -> custom firewall for the admin area of the URL
         admin:
             switch_user:        true
@@ -45,14 +32,14 @@ security:
             pattern:            /admin(.*)
             form_login:
                 provider:       fos_userbundle
-                login_path:     /admin/login
+                login_path:     /login
                 use_forward:    false
                 check_path:     /admin/login_check
                 failure_path:   null
                 use_referer:    true
             logout:
-                path:           /admin/logout
-                target:         /admin/login
+                path:           /logout
+                target:         /login
             anonymous:    true
             remember_me:
                 key:      9034895c8e6816cad3f8fc4d3171bce10
