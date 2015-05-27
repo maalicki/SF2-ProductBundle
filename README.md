@@ -1,9 +1,8 @@
 # SF2-ProductBundle
-
-Casper Events
 ========================
 
-Casper is a web service which allows users to create events, guest list, invite members for the events and many more ;-)
+Another example project created with Symfony SE. It includes Sonata as backend.
+Entity product created with CRUD controller
 
 What's inside?
 --------------
