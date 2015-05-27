@@ -64,7 +64,7 @@ class Product {
     }
     
     public function setName($name) {
-        $this->translate( new CurrentLocaleCallable() )->setName($name);
+        $this->translate( 'en' )->setName($name);
         $this->mergeNewTranslations();
         return $this;
     }
