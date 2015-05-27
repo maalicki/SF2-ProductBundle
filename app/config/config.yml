@@ -1,5 +1,5 @@
 imports:
-    - { resource: @PolcodeProductBundle/Resources/config/parameters.yml }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @PolcodeProductBundle/Resources/config/admin.yml }
@@ -34,7 +34,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
-        resources: ['bootstrap_3_layout.html.twig']
+       # resources: ['bootstrap_3_layout.html.twig']
 #        resources: ['bootstrap_3_horizontal_layout.html.twig]
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------

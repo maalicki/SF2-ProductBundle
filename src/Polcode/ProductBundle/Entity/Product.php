@@ -15,14 +15,14 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="product")
+ * @ORM\Table(name="product", schema="product")
  * @ORM\Entity(repositoryClass="Polcode\ProductBundle\Entity\ProductRepository")
  * 
  */
 class Product {
 
     use ORMBehaviors\Translatable\Translatable;
-
+    
     /**
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
@@ -62,13 +62,31 @@ class Product {
     public function getName() {
         return $this->proxyCurrentLocaleTranslation('getName', array());
     }
+    
+    public function setName($name) {
+        $this->translate( new CurrentLocaleCallable() )->setName($name);
+        $this->mergeNewTranslations();
+        return $this;
+    }
 
     public function getDescription() {
         return $this->proxyCurrentLocaleTranslation('getDescription', array());
     }
+    
+    public function setDescription($description) {
+        $this->translate('en')->setDescription($description);
+        $this->mergeNewTranslations();
+        return $this;
+    }
 
     public function getSlug() {
         return $this->proxyCurrentLocaleTranslation('getSlug', array());
+    }
+    
+    public function setSlug($slug) {
+        $this->translate('en')->setSlug($slug);
+        $this->mergeNewTranslations();
+        return $this;
     }
 
     /**
